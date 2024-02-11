@@ -64,26 +64,28 @@ userSchema.methods.isPasswordCorrect = async function (password) {
 };
 
 userSchema.methods.generateAccessToken = function () {
-  jwt.sign({
-    _id: this._id,
-    username: this.username,
-    email: this.email,
-  },
-  process.env.ACCESS_TOKEN_SECRET,
-  {
-    expiresIn: process.env.ACCESS_TOKEN_EXPIRY
-  }
+  jwt.sign(
+    {
+      _id: this._id,
+      username: this.username,
+      email: this.email,
+    },
+    process.env.ACCESS_TOKEN_SECRET,
+    {
+      expiresIn: process.env.ACCESS_TOKEN_EXPIRY,
+    }
   );
 };
 
 userSchema.methods.generateRefreshToken = function () {
-    jwt.sign({
-        _id: this._id,
-      },
-      process.env.REFRESH_TOKEN_SECRET,
-      {
-        expiresIn: process.env.REFRESH_TOKEN_EXPIRY
-      }
-      );
+  jwt.sign(
+    {
+      _id: this._id,
+    },
+    process.env.REFRESH_TOKEN_SECRET,
+    {
+      expiresIn: process.env.REFRESH_TOKEN_EXPIRY,
+    }
+  );
 };
 export const User = mongoose.model("User", userSchema);
