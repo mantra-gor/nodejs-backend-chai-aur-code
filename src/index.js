@@ -11,5 +11,5 @@ connectDB()
     });
   })
   .catch((err) => {
-    console.log("Failed to connect with Database", err);
+    console.log("While Connecting to DB ::Error::  ", err);
   });
